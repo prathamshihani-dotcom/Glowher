@@ -32,7 +32,7 @@ export default function GlowPricing() {
             {plan.name}
           </h3>
 
-          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-6">
             <span className="text-3xl sm:text-3xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight">
               {plan.price}
             </span>
@@ -40,14 +40,6 @@ export default function GlowPricing() {
               {plan.duration}
             </span>
           </div>
-
-          {plan.monthlyNote ? (
-            <p className={`text-xs font-semibold mb-6 ${isDark ? "text-cotton" : "text-muted"}`}>
-              {plan.monthlyNote}
-            </p>
-          ) : (
-            <div className="mb-6 h-4" />
-          )}
 
           <div className={`h-px w-full mb-6 ${isDark ? "bg-bordeaux-light" : "bg-cotton/60"}`} />
         </div>

@@ -31,10 +31,10 @@ export default function HeroGlowher() {
   );
 
   return (
-    <section className="w-full pt-6 sm:pt-8 pb-12 sm:pb-16 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 min-w-0">
+    <section className="w-full pt-3 sm:pt-6 lg:pt-8 pb-10 sm:pb-16 overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-3 sm:px-6 min-w-0">
         {/* Large Cotton Card with 40px radius */}
-        <div className="bg-cotton p-6 sm:p-10 md:p-12 lg:p-14 rounded-card-xl border border-pink/40 shadow-sm w-full min-w-0 overflow-hidden">
+        <div className="bg-cotton p-4 sm:p-8 md:p-12 lg:p-14 rounded-card-xl border border-pink/40 shadow-sm w-full min-w-0 overflow-hidden">
           {heroPhoto && (
             <div
               style={{ position: "relative", overflow: "hidden", height: "180px", width: "100%" }}
@@ -52,8 +52,36 @@ export default function HeroGlowher() {
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-w-0">
-            {/* Left Column */}
-            <div className="lg:col-span-7 flex flex-col items-start min-w-0 w-full">
+            {/* Form Column - order-1 on mobile so form appears in the first frame upon loading */}
+            <div className="order-1 lg:order-2 lg:col-span-5 w-full min-w-0">
+              <LeadForm variant="batch" id="trial" />
+
+              {/* Mobile Buttons directly below the form + Coach Faces */}
+              <div className="lg:hidden flex flex-col gap-3.5 mt-6 w-full">
+                <Link
+                  href={hero.ctaPrimaryHref}
+                  className="w-full min-h-[46px] flex items-center justify-center rounded-full bg-bordeaux text-white font-bold text-sm shadow-md"
+                >
+                  {hero.ctaPrimary}
+                </Link>
+                <a
+                  href={siteConfig.glowherWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[46px] flex items-center justify-center rounded-full border-2 border-bordeaux text-bordeaux font-bold text-sm hover:bg-white/40"
+                >
+                  {hero.ctaSecondary}
+                </a>
+
+                {/* Coach Faces under form & buttons (Mobile) */}
+                <div className="pt-2">
+                  {coachFacesRow}
+                </div>
+              </div>
+            </div>
+
+            {/* Left Column / Heading & Info - order-2 on mobile */}
+            <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-start min-w-0 w-full">
               {/* Pill Chip with Equal Size Dots and Flexible Timings */}
               <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white text-bordeaux text-[11px] sm:text-xs md:text-sm font-bold tracking-tight sm:tracking-wide mb-5 shadow-sm border border-pink/20 whitespace-nowrap overflow-hidden max-w-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-bordeaux shrink-0" />
@@ -69,7 +97,7 @@ export default function HeroGlowher() {
               </div>
 
               {/* H1 */}
-              <h1 className="text-[36px] sm:text-[46px] md:text-[54px] lg:text-[64px] font-extrabold tracking-tightest text-bordeaux leading-[1.04] mb-5">
+              <h1 className="text-[32px] sm:text-[46px] md:text-[54px] lg:text-[64px] font-extrabold tracking-tightest text-bordeaux leading-[1.06] mb-5">
                 {hero.h1}
               </h1>
 
@@ -99,34 +127,6 @@ export default function HeroGlowher() {
 
                 {/* Coach Faces under CTA buttons (Desktop) */}
                 {coachFacesRow}
-              </div>
-            </div>
-
-            {/* Right Column / Lead Form in soft-pink */}
-            <div className="lg:col-span-5 w-full min-w-0">
-              <LeadForm variant="batch" id="trial" />
-
-              {/* Mobile Buttons directly below the form + Coach Faces */}
-              <div className="lg:hidden flex flex-col gap-3.5 mt-6 w-full">
-                <Link
-                  href={hero.ctaPrimaryHref}
-                  className="w-full min-h-[46px] flex items-center justify-center rounded-full bg-bordeaux text-white font-bold text-sm shadow-md"
-                >
-                  {hero.ctaPrimary}
-                </Link>
-                <a
-                  href={siteConfig.glowherWhatsAppUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[46px] flex items-center justify-center rounded-full border-2 border-bordeaux text-bordeaux font-bold text-sm hover:bg-white/40"
-                >
-                  {hero.ctaSecondary}
-                </a>
-
-                {/* Coach Faces under form & buttons (Mobile) */}
-                <div className="pt-2">
-                  {coachFacesRow}
-                </div>
               </div>
             </div>
           </div>

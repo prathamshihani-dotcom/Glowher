@@ -6,9 +6,7 @@ import { glowherContent, siteConfig } from "@/lib/content";
 import type { VideoReel } from "@/lib/types";
 
 interface VideoReelsSectionProps {
-  mode?: "classes" | "feedback" | "all";
   id?: string;
-  initialTab?: "classes" | "feedback";
 }
 
 function extractYouTubeId(urlOrId?: string): string | null {
@@ -72,28 +70,10 @@ function getReelThumbnail(reel: VideoReel): string {
   return "";
 }
 
-export default function VideoReelsSection({
-  mode = "all",
-  id,
-  initialTab,
-}: VideoReelsSectionProps) {
-  const { classReels = [], videoReels = [] } = glowherContent;
-
-  const resolvedInitialTab =
-    mode === "classes" ? "classes" : mode === "feedback" ? "feedback" : initialTab || "feedback";
-
-  const [activeTab, setActiveTab] = useState<"classes" | "feedback">(resolvedInitialTab);
+export default function VideoReelsSection({ id = "reviews" }: VideoReelsSectionProps) {
+  const { videoReels = [] } = glowherContent;
   const [selectedReel, setSelectedReel] = useState<VideoReel | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const currentReels =
-    mode === "classes"
-      ? classReels
-      : mode === "feedback"
-      ? videoReels
-      : activeTab === "classes"
-      ? classReels
-      : videoReels;
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -130,52 +110,23 @@ export default function VideoReelsSection({
     }
   };
 
-  if ((!classReels || classReels.length === 0) && (!videoReels || videoReels.length === 0)) {
+  if (!videoReels || videoReels.length === 0) {
     return null;
   }
 
-  const isClassesOnly = mode === "classes";
-  const isFeedbackOnly = mode === "feedback";
-
-  const eyebrowText = isClassesOnly
-    ? "Live Google Meet Sessions"
-    : isFeedbackOnly
-    ? "Real Member Stories"
-    : activeTab === "classes"
-    ? "Live Google Meet Sessions"
-    : "Real Client Feedback";
-
-  const headingText = isClassesOnly
-    ? "See what happens inside our live Google Meet batches."
-    : isFeedbackOnly
-    ? "Real feedback from women who practice with GlowHer."
-    : activeTab === "classes"
-    ? "See what happens inside our live Google Meet batches."
-    : "Real feedback from women who practice with GlowHer.";
-
-  const descText = isClassesOnly
-    ? "Real posture corrections, interactive live energy, and coach guidance in every session."
-    : isFeedbackOnly
-    ? "Authentic transformation stories, facial tone improvements, and daily habit breakthroughs."
-    : activeTab === "classes"
-    ? "Real posture corrections, interactive live energy, and coach guidance in every session."
-    : "Authentic transformation stories, facial tone improvements, and daily habit breakthroughs.";
-
-  const sectionId = id || (isClassesOnly ? "classes" : isFeedbackOnly ? "reviews" : "reviews");
+  const eyebrowText = "Client Feedback";
+  const headingText = "Real feedback from women who practice with GlowHer.";
+  const descText = "Authentic transformation stories, facial tone improvements, and daily habit breakthroughs.";
 
   return (
     <section
-      id={sectionId}
+      id={id}
       aria-label={headingText}
-      className={`w-full py-16 sm:py-24 border-y border-cotton/50 overflow-hidden scroll-mt-20 sm:scroll-mt-24 ${
-        isClassesOnly
-          ? "bg-gradient-to-b from-white via-softpink/30 to-white"
-          : "bg-gradient-to-b from-softpink via-white to-softpink/40"
-      }`}
+      className="w-full py-16 sm:py-24 border-y border-cotton/50 overflow-hidden scroll-mt-20 sm:scroll-mt-24 bg-gradient-to-b from-softpink via-white to-softpink/40"
     >
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         {/* Header with Title and Scroll Controls */}
-        <div className="flex flex-col sm:flex-row items-start sm:end justify-between mb-6 sm:mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-6 sm:mb-8 gap-4">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-cotton text-bordeaux text-xs font-bold uppercase tracking-eyebrow mb-2">
               <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
@@ -214,58 +165,13 @@ export default function VideoReelsSection({
           </div>
         </div>
 
-        {/* Optional Tab Switcher — only shown if mode === "all" */}
-        {mode === "all" && (
-          <div className="flex items-center gap-2 sm:gap-3 mb-6">
-            <button
-              type="button"
-              onClick={() => {
-                setActiveTab("feedback");
-                if (scrollRef.current) scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
-              }}
-              className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeTab === "feedback"
-                  ? "bg-bordeaux text-white shadow-md ring-2 ring-bordeaux/20 scale-[1.02]"
-                  : "bg-white text-bordeaux/80 hover:text-bordeaux border border-cotton hover:bg-cotton/60"
-              }`}
-            >
-              <span>Client Feedback</span>
-              <span className={`text-[11px] px-2 py-0.5 rounded-full font-semibold ${
-                activeTab === "feedback" ? "bg-white/20 text-cotton" : "bg-cotton text-bordeaux/70"
-              }`}>
-                {videoReels.length}
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setActiveTab("classes");
-                if (scrollRef.current) scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
-              }}
-              className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeTab === "classes"
-                  ? "bg-bordeaux text-white shadow-md ring-2 ring-bordeaux/20 scale-[1.02]"
-                  : "bg-white text-bordeaux/80 hover:text-bordeaux border border-cotton hover:bg-cotton/60"
-              }`}
-            >
-              <span>Inside Our Classes</span>
-              <span className={`text-[11px] px-2 py-0.5 rounded-full font-semibold ${
-                activeTab === "classes" ? "bg-white/20 text-cotton" : "bg-cotton text-bordeaux/70"
-              }`}>
-                {classReels.length}
-              </span>
-            </button>
-          </div>
-        )}
-
-        {/* 9:16 Video Reels Horizontal Scroll / Responsive Grid */}
+        {/* 9:16 Video Reels Horizontal Scroll */}
         <div
           ref={scrollRef}
           style={{ touchAction: "pan-x pan-y" }}
           className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-proximity px-1 sm:px-0 pb-4 pt-2 no-scrollbar scroll-smooth justify-start overscroll-x-contain overscroll-y-auto"
         >
-          {currentReels.map((reel) => (
+          {videoReels.map((reel) => (
             <article
               key={reel.id}
               onClick={() => setSelectedReel(reel)}
@@ -277,7 +183,7 @@ export default function VideoReelsSection({
               <div className="absolute inset-0 pointer-events-none">
                 <SafeImage
                   src={getReelThumbnail(reel)}
-                  alt={reel.title || "GlowHer video reel"}
+                  alt={reel.title || "GlowHer video review"}
                   fill
                   sizes="(max-width: 640px) 240px, 300px"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
@@ -292,7 +198,7 @@ export default function VideoReelsSection({
                   {reel.tag || "Feedback"}
                 </span>
                 <span className="text-[10px] sm:text-xs font-semibold text-cotton/90 bg-bordeaux/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
-                  {reel.duration || "Short"}
+                  {reel.duration || "Review"}
                 </span>
               </div>
 
@@ -390,9 +296,7 @@ export default function VideoReelsSection({
             <div className="p-3.5 sm:p-4 bg-bordeaux border-t border-white/10 shrink-0 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-xs font-semibold text-cotton truncate">
-                  {selectedReel.tag === "Inside Our Classes"
-                    ? "Want to join this live Google Meet batch?"
-                    : "Ready to start your GlowHer journey?"}
+                  Ready to start your GlowHer journey?
                 </p>
                 <p className="text-[11px] text-white/70">
                   Batches run Monday to Friday from 5:30 AM to 8:30 PM IST
@@ -400,7 +304,7 @@ export default function VideoReelsSection({
               </div>
               <a
                 href={`https://wa.me/917302970977?text=${encodeURIComponent(
-                  `Hi GlowHer! I watched the video "${selectedReel.title}" and would like to join your live Google Meet classes. Please share details.`
+                  `Hi GlowHer! I watched the review "${selectedReel.title}" and would like to join your live face yoga batches. Please share details.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

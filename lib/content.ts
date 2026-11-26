@@ -933,7 +933,6 @@ export const glowherContent = {
     },
   ] as DownloadItem[],
   faceYogaPhotos: [] as FaceYogaPhoto[],
-  classReels: yogherContent.classReels,
   videoReels: yogherContent.videoReels,
   testimonials: [] as Testimonial[],
   sharedFeatures: [

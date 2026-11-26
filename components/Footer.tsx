@@ -82,11 +82,6 @@ export default function Footer({ brand }: FooterProps) {
               ) : (
                 <>
                   <li>
-                    <Link href="#benefits" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
-                      Why face yoga
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="#session" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
                       30-minute daily session
                     </Link>

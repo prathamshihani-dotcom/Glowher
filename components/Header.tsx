@@ -78,9 +78,6 @@ export default function Header({ brand }: HeaderProps) {
             </>
           ) : (
             <>
-              <Link href="#benefits" className="hover:text-muted transition-colors py-2">
-                Benefits
-              </Link>
               <Link href="#rhythm" className="hover:text-muted transition-colors py-2">
                 Weekly Rhythm
               </Link>

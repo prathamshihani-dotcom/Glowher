@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import HeroGlowher from "@/components/sections/HeroGlowher";
-import QuickFacts from "@/components/sections/QuickFacts";
-import GlowBenefits from "@/components/sections/GlowBenefits";
 import GlowWeeklyRhythm from "@/components/sections/GlowWeeklyRhythm";
 import GlowSession from "@/components/sections/GlowSession";
 import GlowClassPhotos from "@/components/sections/GlowClassPhotos";
@@ -49,13 +47,7 @@ export default function GlowherPage() {
         {/* 2. Hero in large cotton card with batch timing form + coach faces */}
         <HeroGlowher />
 
-        {/* 3. Quick facts row with icons */}
-        <QuickFacts />
-
-        {/* 4. Benefits (4 facial workout cards + photo) */}
-        <GlowBenefits />
-
-        {/* 5. Monday to Friday Weekly Practice Rhythm (3 Face Yoga + 2 Abhyanga) */}
+        {/* 3. Monday to Friday Weekly Practice Rhythm (3 Face Yoga + 2 Abhyanga) */}
         <GlowWeeklyRhythm />
 
         {/* 6. Your 30-minute session (Face-zone illustration + Bordeaux breakdown) */}

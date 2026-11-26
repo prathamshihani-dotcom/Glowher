@@ -12,8 +12,8 @@ export default function StickyMobileCTA({ brand }: StickyMobileCTAProps) {
   const ctaText = isYogher ? "Join from ₹1,199" : "Join from ₹999";
   const targetHref = isYogher ? "#plans" : "#trial";
   const whatsappJoinUrl = isYogher
-    ? "https://wa.me/918679244416?text=Hi%20YogHer!%20I%27d%20like%20to%20start%20the%201-Month%20Live%20Yoga%20Trial%20(%E2%82%B91%2C199%20%2F%2030%20days).%20Please%20share%20batch%20timings%20and%20joining%20details."
-    : "https://wa.me/918679244416?text=Hi%20GlowHer!%20I%27d%20like%20to%20join%20the%20Face%20Yoga%20Trial%20(%E2%82%B9999%20%2F%20month).%20Please%20share%20batch%20timings%20and%20joining%20details.";
+    ? "https://wa.me/917302970977?text=Hi%20YogHer!%20I%27d%20like%20to%20start%20the%201-Month%20Live%20Yoga%20Trial%20(%E2%82%B91%2C199%20%2F%2030%20days).%20Please%20share%20batch%20timings%20and%20joining%20details."
+    : "https://wa.me/917302970977?text=Hi%20GlowHer!%20I%27d%20like%20to%20join%20the%20Face%20Yoga%20Trial%20(%E2%82%B9999%20%2F%20month).%20Please%20share%20batch%20timings%20and%20joining%20details.";
   const whatsappUrl = isYogher ? siteConfig.yogherWhatsAppUrl : siteConfig.glowherWhatsAppUrl;
 
   const [formInView, setFormInView] = useState(true);

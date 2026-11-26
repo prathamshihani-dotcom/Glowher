@@ -54,10 +54,18 @@ export default function HeroGlowher() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-w-0">
             {/* Left Column */}
             <div className="lg:col-span-7 flex flex-col items-start min-w-0 w-full">
-              {/* Chip */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-bordeaux text-xs sm:text-sm font-bold tracking-wide mb-5 shadow-sm border border-pink/20">
-                <span className="w-2 h-2 rounded-full bg-bordeaux" />
-                <span>{hero.chip}</span>
+              {/* Pill Chip with Equal Size Dots and Flexible Timings */}
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white text-bordeaux text-[11px] sm:text-xs md:text-sm font-bold tracking-tight sm:tracking-wide mb-5 shadow-sm border border-pink/20 whitespace-nowrap overflow-hidden max-w-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-bordeaux shrink-0" />
+                <span>Live face yoga</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-bordeaux shrink-0" aria-hidden="true" />
+                <span>Flexible timings</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-bordeaux shrink-0" aria-hidden="true" />
+                <span>30 minutes</span>
+                <span className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-bordeaux shrink-0" aria-hidden="true" />
+                  <span>Monday to Friday</span>
+                </span>
               </div>
 
               {/* H1 */}

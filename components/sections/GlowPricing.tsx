@@ -81,7 +81,7 @@ export default function GlowPricing() {
             Less than a facial. Lasts all month.
           </h2>
           <p className="text-muted text-sm sm:text-base max-w-lg mx-auto">
-            Every plan includes 30-minute live sessions Monday to Friday, a choice of 6 batches and WhatsApp support. GST included.
+            Every plan includes 30-minute live sessions Monday to Friday, 12 batches throughout the day and WhatsApp support. GST included.
           </p>
         </div>
 

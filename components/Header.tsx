@@ -10,7 +10,7 @@ export default function Header({ brand }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all">
-      <div className="max-w-[1200px] mx-auto px-3 sm:px-6 h-20 flex items-center justify-between gap-2 sm:gap-4">
+      <div className="max-w-[1200px] mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         {/* Left: Logo */}
         <div className="flex items-center gap-2.5 sm:gap-6 min-w-0">
           <Link

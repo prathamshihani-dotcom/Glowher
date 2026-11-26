@@ -22,8 +22,8 @@ export default function PrivacyPage() {
           </p>
           <p className="text-sm text-muted">
             For any data-related queries, please contact our support team at{" "}
-            <a href="https://wa.me/918679244416" className="font-bold underline text-bordeaux">
-              +91 86792 44416
+            <a href="https://wa.me/917302970977" className="font-bold underline text-bordeaux">
+              +91 73029 70977
             </a>.
           </p>
           <div className="pt-4">
@@ -31,12 +31,12 @@ export default function PrivacyPage() {
               href="/"
               className="inline-flex items-center gap-1.5 text-sm font-bold text-bordeaux hover:underline"
             >
-              <span>← Back to YogHer Home</span>
+              <span>← Back to GlowHer Home</span>
             </Link>
           </div>
         </div>
       </main>
-      <Footer brand="yogher" />
+      <Footer brand="glowher" />
     </>
   );
 }

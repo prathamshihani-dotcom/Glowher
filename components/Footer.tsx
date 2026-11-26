@@ -45,7 +45,7 @@ export default function Footer({ brand }: FooterProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2.5 min-h-[44px] bg-cotton text-bordeaux rounded-full hover:bg-white transition-colors"
               >
-                <span>WhatsApp: {siteConfig.phone}</span>
+                <span>WhatsApp: {isYogher ? "+91 86792 44416" : siteConfig.phone}</span>
               </a>
             </div>
           </div>

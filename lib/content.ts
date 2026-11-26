@@ -184,7 +184,7 @@ export const IMAGES = {
 export const siteConfig = {
   phone: "+91 73029 70977",
   phoneRaw: "917302970977",
-  yogherWhatsAppUrl: "https://wa.me/917302970977?text=Hi%20YogHer!%20I'd%20like%20to%20know%20more%20about%20your%20live%20yoga%20batches.",
+  yogherWhatsAppUrl: "https://wa.me/918679244416?text=Hi%20YogHer!%20I'd%20like%20to%20know%20more%20about%20your%20live%20yoga%20batches.",
   glowherWhatsAppUrl: "https://wa.me/917302970977?text=Hi%20GlowHer!%20I'd%20like%20to%20know%20more%20about%20your%20face%20yoga%20classes.",
   logoUrl: "/brand/yogher-logo.png",
 };

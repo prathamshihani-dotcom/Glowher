@@ -6,30 +6,6 @@ import { glowherContent, siteConfig, IMAGES } from "@/lib/content";
 export default function HeroGlowher() {
   const { hero, heroPhoto } = glowherContent;
 
-  const coachFacesRow = (
-    <div className="flex items-center gap-3.5 pt-2">
-      <div className="flex -space-x-3 overflow-hidden shrink-0">
-        {IMAGES.glowherHeroAvatars.map((coach, idx) => (
-          <div
-            key={idx}
-            className="relative w-[52px] h-[52px] rounded-full border-2 border-white overflow-hidden bg-softpink shrink-0 shadow-sm"
-          >
-            <SafeImage
-              src={coach.src}
-              alt={`${coach.name}, certified face yoga coach`}
-              fill
-              sizes="52px"
-              className="object-cover object-top"
-            />
-          </div>
-        ))}
-      </div>
-      <p className="text-xs sm:text-sm font-bold text-bordeaux/90 leading-snug">
-        Live with certified face yoga coaches <span className="font-extrabold text-bordeaux">Manisha</span>, <span className="font-extrabold text-bordeaux">Amrita</span>, <span className="font-extrabold text-bordeaux">Ithieeka</span>, <span className="font-extrabold text-bordeaux">Lipakshi</span> &amp; team
-      </p>
-    </div>
-  );
-
   return (
     <section className="w-full pt-3 sm:pt-6 lg:pt-8 pb-10 sm:pb-16 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-3 sm:px-6 min-w-0">
@@ -56,7 +32,7 @@ export default function HeroGlowher() {
             <div className="order-1 lg:order-2 lg:col-span-5 w-full min-w-0">
               <LeadForm variant="batch" id="trial" />
 
-              {/* Mobile Buttons directly below the form + Coach Faces */}
+              {/* Mobile Buttons directly below the form */}
               <div className="lg:hidden flex flex-col gap-3.5 mt-6 w-full">
                 <Link
                   href={hero.ctaPrimaryHref}
@@ -72,11 +48,6 @@ export default function HeroGlowher() {
                 >
                   {hero.ctaSecondary}
                 </a>
-
-                {/* Coach Faces under form & buttons (Mobile) */}
-                <div className="pt-2">
-                  {coachFacesRow}
-                </div>
               </div>
             </div>
 
@@ -124,9 +95,6 @@ export default function HeroGlowher() {
                     {hero.ctaSecondary}
                   </a>
                 </div>
-
-                {/* Coach Faces under CTA buttons (Desktop) */}
-                {coachFacesRow}
               </div>
             </div>
           </div>

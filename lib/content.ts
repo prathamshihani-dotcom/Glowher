@@ -178,7 +178,7 @@ export const IMAGES = {
   glowherBenefits: `${CLOUDINARY_BASE}v1780150970/yogher/instructorsgallery/epsrwspvk16ks6hqlgxa.png`,
 
   // GlowHer Final CTA band background
-  glowherFinalCTA: `${CLOUDINARY_BASE}v1780150961/yogher/instructorsgallery/mca07a6qrtx28iteqrsz.png`,
+  glowherFinalCTA: "/images/group-class-live-bg.jpg",
 };
 
 export const siteConfig = {
@@ -933,6 +933,8 @@ export const glowherContent = {
     },
   ] as DownloadItem[],
   faceYogaPhotos: [] as FaceYogaPhoto[],
+  classReels: yogherContent.classReels,
+  videoReels: yogherContent.videoReels,
   testimonials: [] as Testimonial[],
   sharedFeatures: [
     "30-minute live sessions",

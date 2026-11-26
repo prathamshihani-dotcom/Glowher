@@ -84,6 +84,9 @@ export default function Header({ brand }: HeaderProps) {
               <Link href="#results" className="hover:text-muted transition-colors py-2">
                 Results
               </Link>
+              <Link href="#reviews" className="hover:text-muted transition-colors py-2">
+                Reviews
+              </Link>
               <Link href="#pricing" className="hover:text-muted transition-colors py-2">
                 Pricing
               </Link>

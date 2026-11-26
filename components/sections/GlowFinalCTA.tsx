@@ -17,7 +17,7 @@ export default function GlowFinalCTA() {
       >
         <SafeImage
           src={IMAGES.glowherFinalCTA}
-          alt="Face and prenatal yoga calmness"
+          alt="Live Google Meet group yoga batch session"
           fill
           loading="lazy"
           sizes="100vw"

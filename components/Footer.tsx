@@ -87,6 +87,11 @@ export default function Footer({ brand }: FooterProps) {
                     </Link>
                   </li>
                   <li>
+                    <Link href="#reviews" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
+                      Video reviews
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="#pricing" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
                       Pricing
                     </Link>

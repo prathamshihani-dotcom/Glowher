@@ -79,6 +79,7 @@ export default function MobileMenu({ isOpen, onClose, brand, triggerRef }: Mobil
   const glowherLinks: { label: string; href: string; isPage?: boolean }[] = [
     { label: "Weekly Rhythm", href: "#rhythm" },
     { label: "Client Results", href: "#results" },
+    { label: "Video Reviews", href: "#reviews" },
     { label: "Guides & Downloads", href: "#downloads" },
     { label: "Pricing", href: "#pricing" },
   ];

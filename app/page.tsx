@@ -7,6 +7,7 @@ import GlowClassPhotos from "@/components/sections/GlowClassPhotos";
 import GlowTransformations from "@/components/sections/GlowTransformations";
 import GlowDownloads from "@/components/sections/GlowDownloads";
 import GlowCoaches from "@/components/sections/GlowCoaches";
+import VideoReelsSection from "@/components/sections/VideoReelsSection";
 import GlowPricing from "@/components/sections/GlowPricing";
 import GlowFAQ from "@/components/sections/GlowFAQ";
 import GlowFinalCTA from "@/components/sections/GlowFinalCTA";
@@ -65,7 +66,10 @@ export default function GlowherPage() {
         {/* 10. Coaches (Manisha & Ithieeka + practice gallery rows) */}
         <GlowCoaches />
 
-        {/* 11. Pricing */}
+        {/* 11. Real YouTube Reviews & Live Class Testimonials */}
+        <VideoReelsSection id="reviews" />
+
+        {/* 12. Pricing */}
         <GlowPricing />
 
         {/* 12. FAQ ("Good to know.") */}

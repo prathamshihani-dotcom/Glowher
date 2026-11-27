@@ -90,67 +90,67 @@ export default function Header({ brand }: HeaderProps) {
     );
   }
 
-  // GlowHer Header: Prominent centered logo at top, shrinks smoothly to compact bar on scroll
+  // GlowHer Header: Clean centered logo, compact & slim, shrinks smoothly on scroll
   return (
     <header
-      className={`sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all duration-300 ease-out ${
+      className={`sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 overflow-hidden transition-all duration-300 ease-out ${
         isScrolled ? "shadow-sm bg-softpink/98" : ""
       }`}
     >
       <div
-        className={`max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 transition-all duration-300 ease-out ${
-          isScrolled
-            ? "h-13 sm:h-15 py-1"
-            : "h-20 sm:h-24 md:h-26 py-2"
-        }`}
+        style={{
+          height: isScrolled ? "54px" : "66px",
+          maxHeight: isScrolled ? "54px" : "66px",
+        }}
+        className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 transition-all duration-300 ease-out"
       >
         {/* Left Desktop Nav (Symmetric) */}
         <nav aria-label="Main navigation left" className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-bordeaux flex-1 justify-start">
-          <Link href="#rhythm" className="hover:text-muted transition-colors py-2">
+          <Link href="#rhythm" className="hover:text-muted transition-colors py-1">
             Weekly Rhythm
           </Link>
-          <Link href="#classes" className="hover:text-muted transition-colors py-2">
+          <Link href="#classes" className="hover:text-muted transition-colors py-1">
             Inside Classes
           </Link>
         </nav>
 
-        {/* Center: GlowHer Logo - Shrinks on scroll so sticky header stays slim & compact */}
+        {/* Center: GlowHer Logo - Perfectly constrained & centered */}
         <div className="flex-1 md:flex-initial flex items-center justify-center shrink-0">
           <Link
             href="/"
             aria-label="GlowHer Face Yoga by YogHer"
-            className="flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-bordeaux rounded-xl shrink-0 transition-transform hover:scale-105"
+            className="flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-bordeaux rounded-lg shrink-0 transition-transform hover:scale-105"
           >
             <Image
               src="/brand/glowher-logo.png"
               alt="GlowHer Face Yoga Classes by YogHer"
-              width={220}
-              height={180}
+              width={140}
+              height={50}
               priority
               unoptimized
-              className={`w-auto object-contain drop-shadow-sm transition-all duration-300 ease-out ${
-                isScrolled
-                  ? "h-9 sm:h-10 md:h-11"
-                  : "h-18 sm:h-22 md:h-24"
-              }`}
+              style={{
+                height: isScrolled ? "36px" : "48px",
+                maxHeight: isScrolled ? "36px" : "48px",
+                width: "auto",
+              }}
+              className="w-auto object-contain drop-shadow-xs transition-all duration-300 ease-out"
             />
           </Link>
         </div>
 
         {/* Right Desktop Nav & CTA */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-bordeaux flex-1 justify-end shrink-0">
-          <Link href="#results" className="hover:text-muted transition-colors py-2">
+          <Link href="#results" className="hover:text-muted transition-colors py-1">
             Results
           </Link>
-          <Link href="#pricing" className="hover:text-muted transition-colors py-2">
+          <Link href="#pricing" className="hover:text-muted transition-colors py-1">
             Pricing
           </Link>
           <Link
             href="#pricing"
+            style={{ minHeight: isScrolled ? "36px" : "40px" }}
             className={`inline-flex items-center justify-center rounded-full bg-bordeaux text-white font-bold text-xs uppercase tracking-wider hover:opacity-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bordeaux focus:ring-offset-2 shrink-0 shadow-sm ${
-              isScrolled
-                ? "min-h-[38px] px-5 py-2 text-[11px]"
-                : "min-h-[44px] px-6 py-2.5"
+              isScrolled ? "px-4 py-1.5 text-[11px]" : "px-5 py-2"
             }`}
           >
             Start at ₹999

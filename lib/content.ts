@@ -177,8 +177,8 @@ export const IMAGES = {
   // GlowHer Benefits photo
   glowherBenefits: `${CLOUDINARY_BASE}v1780150970/yogher/instructorsgallery/epsrwspvk16ks6hqlgxa.png`,
 
-  // GlowHer Final CTA band background
-  glowherFinalCTA: "/images/group-class-live-bg.jpg",
+  // GlowHer Final CTA band image (Enhanced Live Meet Session)
+  glowherFinalCTA: "/images/face-yoga-live-meet.jpg",
 };
 
 export const siteConfig = {

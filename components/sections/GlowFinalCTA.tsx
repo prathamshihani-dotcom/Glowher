@@ -12,19 +12,19 @@ export default function GlowFinalCTA() {
     >
       <div className="relative z-10 max-w-[850px] mx-auto px-4 sm:px-6">
         {/* 1. Dedicated Image Container (Alag se container) */}
-        <div className="relative w-full max-w-[680px] mx-auto aspect-[16/10] sm:aspect-[16/9] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border-2 border-white/15 bg-black/30 mb-8 sm:mb-10 group">
+        <div className="relative w-full max-w-[720px] mx-auto aspect-[1063/555] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border-2 border-white/20 bg-black/40 mb-8 sm:mb-10 group">
           <SafeImage
             src={IMAGES.glowherFinalCTA}
-            alt="Live Google Meet face yoga session"
+            alt="Live Google Meet face yoga session with certified coach"
             fill
             loading="lazy"
-            sizes="(max-width: 768px) 100vw, 680px"
+            sizes="(max-width: 768px) 100vw, 720px"
             className="object-cover object-center group-hover:scale-102 transition-transform duration-500"
           />
           {/* Live class badge */}
-          <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider border border-white/20 shadow-md">
+          <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider border border-white/20 shadow-md">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span>Live Class on Google Meet</span>
+            <span>Live Face Yoga Batch on Google Meet</span>
           </div>
         </div>
 

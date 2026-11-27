@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,11 +10,32 @@ interface HeaderProps {
 
 export default function Header({ brand }: HeaderProps) {
   const isYogher = brand === "yogher";
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Trigger shrink as soon as user scrolls down > 20px
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (isYogher) {
     return (
-      <header className="sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all">
-        <div className="max-w-[1200px] mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+      <header
+        className={`sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all duration-300 ${
+          isScrolled ? "shadow-sm" : ""
+        }`}
+      >
+        <div
+          className={`max-w-[1200px] mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300 ${
+            isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-20"
+          }`}
+        >
           {/* Left: Logo */}
           <div className="flex items-center gap-2.5 sm:gap-6 min-w-0">
             <Link
@@ -66,10 +90,20 @@ export default function Header({ brand }: HeaderProps) {
     );
   }
 
-  // GlowHer Header: Prominent centered logo on both Mobile and Desktop
+  // GlowHer Header: Prominent centered logo at top, shrinks smoothly to compact bar on scroll
   return (
-    <header className="sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-22 sm:h-24 md:h-26 py-2 flex items-center justify-between gap-4">
+    <header
+      className={`sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all duration-300 ease-out ${
+        isScrolled ? "shadow-sm bg-softpink/98" : ""
+      }`}
+    >
+      <div
+        className={`max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 transition-all duration-300 ease-out ${
+          isScrolled
+            ? "h-13 sm:h-15 py-1"
+            : "h-20 sm:h-24 md:h-26 py-2"
+        }`}
+      >
         {/* Left Desktop Nav (Symmetric) */}
         <nav aria-label="Main navigation left" className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-bordeaux flex-1 justify-start">
           <Link href="#rhythm" className="hover:text-muted transition-colors py-2">
@@ -80,7 +114,7 @@ export default function Header({ brand }: HeaderProps) {
           </Link>
         </nav>
 
-        {/* Center: GlowHer Logo - Perfectly Centered in Middle on Mobile & Desktop */}
+        {/* Center: GlowHer Logo - Shrinks on scroll so sticky header stays slim & compact */}
         <div className="flex-1 md:flex-initial flex items-center justify-center shrink-0">
           <Link
             href="/"
@@ -94,7 +128,11 @@ export default function Header({ brand }: HeaderProps) {
               height={180}
               priority
               unoptimized
-              className="h-20 sm:h-22 md:h-24 w-auto object-contain drop-shadow-sm"
+              className={`w-auto object-contain drop-shadow-sm transition-all duration-300 ease-out ${
+                isScrolled
+                  ? "h-9 sm:h-10 md:h-11"
+                  : "h-18 sm:h-22 md:h-24"
+              }`}
             />
           </Link>
         </div>
@@ -109,7 +147,11 @@ export default function Header({ brand }: HeaderProps) {
           </Link>
           <Link
             href="#pricing"
-            className="inline-flex items-center justify-center min-h-[44px] px-6 py-2.5 rounded-full bg-bordeaux text-white font-bold text-xs uppercase tracking-wider hover:opacity-95 transition-opacity focus:outline-none focus:ring-2 focus:ring-bordeaux focus:ring-offset-2 shrink-0 shadow-sm"
+            className={`inline-flex items-center justify-center rounded-full bg-bordeaux text-white font-bold text-xs uppercase tracking-wider hover:opacity-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bordeaux focus:ring-offset-2 shrink-0 shadow-sm ${
+              isScrolled
+                ? "min-h-[38px] px-5 py-2 text-[11px]"
+                : "min-h-[44px] px-6 py-2.5"
+            }`}
           >
             Start at ₹999
           </Link>

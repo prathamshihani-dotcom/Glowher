@@ -6,7 +6,9 @@ import { glowherContent, siteConfig } from "@/lib/content";
 import type { VideoReel } from "@/lib/types";
 
 interface VideoReelsSectionProps {
+  mode?: "classes" | "feedback" | "all";
   id?: string;
+  initialTab?: "classes" | "feedback";
 }
 
 function extractYouTubeId(urlOrId?: string): string | null {
@@ -65,15 +67,33 @@ function getReelThumbnail(reel: VideoReel): string {
   }
   const videoId = extractYouTubeId(reel.youtubeUrl || reel.youtubeId);
   if (videoId) {
-    return `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+    return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
   }
   return "";
 }
 
-export default function VideoReelsSection({ id = "reviews" }: VideoReelsSectionProps) {
-  const { videoReels = [] } = glowherContent;
+export default function VideoReelsSection({
+  mode = "classes",
+  id,
+  initialTab,
+}: VideoReelsSectionProps) {
+  const { classReels = [], videoReels = [] } = glowherContent;
+
+  const resolvedInitialTab =
+    mode === "classes" ? "classes" : mode === "feedback" ? "feedback" : initialTab || "classes";
+
+  const [activeTab, setActiveTab] = useState<"classes" | "feedback">(resolvedInitialTab);
   const [selectedReel, setSelectedReel] = useState<VideoReel | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const currentReels =
+    mode === "classes"
+      ? classReels
+      : mode === "feedback"
+      ? videoReels
+      : activeTab === "classes"
+      ? classReels
+      : videoReels;
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -100,29 +120,43 @@ export default function VideoReelsSection({ id = "reviews" }: VideoReelsSectionP
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -280, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: -320, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 280, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
     }
   };
 
-  if (!videoReels || videoReels.length === 0) {
+  if (!currentReels || currentReels.length === 0) {
     return null;
   }
 
-  const eyebrowText = "Client Feedback";
-  const headingText = "Real feedback from women who practice with GlowHer.";
-  const descText = "Authentic transformation stories, facial tone improvements, and daily habit breakthroughs.";
+  const isClasses = mode === "classes" || activeTab === "classes";
+
+  const eyebrowText = isClasses
+    ? "Live Google Meet Batches"
+    : "Client Feedback";
+  const headingText = isClasses
+    ? "See what happens inside our live face yoga classes."
+    : "Real feedback from women who practice with GlowHer.";
+  const descText = isClasses
+    ? "Real technique guidance, live coach corrections, and guided lymphatic Abhyanga massage in every 30-minute session."
+    : "Authentic transformation stories, facial tone improvements, and daily habit breakthroughs.";
+
+  const sectionId = id || (isClasses ? "classes" : "reviews");
 
   return (
     <section
-      id={id}
+      id={sectionId}
       aria-label={headingText}
-      className="w-full py-16 sm:py-24 border-y border-cotton/50 overflow-hidden scroll-mt-20 sm:scroll-mt-24 bg-gradient-to-b from-softpink via-white to-softpink/40"
+      className={`w-full py-16 sm:py-24 border-y border-cotton/50 overflow-hidden scroll-mt-20 sm:scroll-mt-24 ${
+        isClasses
+          ? "bg-gradient-to-b from-white via-softpink/30 to-white"
+          : "bg-gradient-to-b from-softpink via-white to-softpink/40"
+      }`}
     >
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         {/* Header with Title and Scroll Controls */}
@@ -165,65 +199,73 @@ export default function VideoReelsSection({ id = "reviews" }: VideoReelsSectionP
           </div>
         </div>
 
-        {/* 9:16 Video Reels Horizontal Scroll */}
+        {/* Video Cards Horizontal Scroll */}
         <div
           ref={scrollRef}
           style={{ touchAction: "pan-x pan-y" }}
           className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-proximity px-1 sm:px-0 pb-4 pt-2 no-scrollbar scroll-smooth justify-start overscroll-x-contain overscroll-y-auto"
         >
-          {videoReels.map((reel) => (
-            <article
-              key={reel.id}
-              onClick={() => setSelectedReel(reel)}
-              style={{ touchAction: "pan-x pan-y" }}
-              className="group relative aspect-[9/16] w-[230px] sm:w-[260px] md:w-[280px] shrink-0 snap-center rounded-[26px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer bg-cotton border border-cotton/80 select-none flex items-center justify-center"
-              aria-label="Play video reel"
-            >
-              {/* Background Thumbnail Image with 9:16 aspect ratio */}
-              <div className="absolute inset-0 pointer-events-none">
-                <SafeImage
-                  src={getReelThumbnail(reel)}
-                  alt={reel.title || "GlowHer video review"}
-                  fill
-                  sizes="(max-width: 640px) 240px, 300px"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                {/* Subtle top & bottom dark vignettes for contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/40 pointer-events-none" />
-              </div>
+          {currentReels.map((reel) => {
+            const isLandscapeCard = isClasses || !reel.youtubeUrl?.includes("/shorts/");
 
-              {/* Top Tag & Duration Pill */}
-              <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10 pointer-events-none">
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
-                  {reel.tag || "Feedback"}
-                </span>
-                <span className="text-[10px] sm:text-xs font-semibold text-cotton/90 bg-bordeaux/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
-                  {reel.duration || "Review"}
-                </span>
-              </div>
+            return (
+              <article
+                key={reel.id}
+                onClick={() => setSelectedReel(reel)}
+                style={{ touchAction: "pan-x pan-y" }}
+                className={`group relative ${
+                  isLandscapeCard
+                    ? "w-[280px] sm:w-[320px] md:w-[350px] aspect-[16/10]"
+                    : "w-[230px] sm:w-[260px] md:w-[280px] aspect-[9/16]"
+                } shrink-0 snap-center rounded-[24px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer bg-cotton border border-cotton/80 select-none flex items-center justify-center`}
+                aria-label="Play video"
+              >
+                {/* Background Thumbnail Image */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <SafeImage
+                    src={getReelThumbnail(reel)}
+                    alt={reel.title || "GlowHer video"}
+                    fill
+                    sizes="(max-width: 640px) 280px, 350px"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Vignette overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40 pointer-events-none" />
+                </div>
 
-              {/* Centered YouTube Play Button Icon */}
-              <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-115 group-hover:bg-red-600 transition-all duration-300 border-2 border-white/60">
-                <svg className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
+                {/* Top Tag & Duration Pill */}
+                <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10 pointer-events-none">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white bg-black/45 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
+                    {reel.tag || "Live Session"}
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-semibold text-cotton/90 bg-bordeaux/70 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10">
+                    {reel.duration || "Live"}
+                  </span>
+                </div>
 
-              {/* Bottom Card Title & Subtitle */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10 pointer-events-none">
-                <h3 className="text-sm sm:text-base font-extrabold text-white leading-snug drop-shadow-md line-clamp-2 mb-1">
-                  {reel.title}
-                </h3>
-                <p className="text-[11px] sm:text-xs font-medium text-cotton/90 line-clamp-1 drop-shadow-sm">
-                  {reel.clientOrCoach}
-                </p>
-              </div>
-            </article>
-          ))}
+                {/* Centered YouTube Play Button Icon */}
+                <div className="relative z-10 w-13 h-13 sm:w-15 sm:h-15 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-xl group-hover:scale-115 group-hover:bg-red-600 transition-all duration-300 border-2 border-white/70">
+                  <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+
+                {/* Bottom Card Title & Subtitle */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10 pointer-events-none">
+                  <h3 className="text-sm sm:text-base font-extrabold text-white leading-snug drop-shadow-md line-clamp-2 mb-1">
+                    {reel.title}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs font-medium text-cotton/90 line-clamp-1 drop-shadow-sm">
+                    {reel.clientOrCoach}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
 
-      {/* Video Modal Player (Supports 9:16 Shorts, YouTube & Direct Video) */}
+      {/* Video Modal Player (Responsive for 16:9 Landscape & 9:16 Shorts) */}
       {selectedReel && (
         <div
           role="dialog"
@@ -231,91 +273,108 @@ export default function VideoReelsSection({ id = "reviews" }: VideoReelsSectionP
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4"
           onClick={() => setSelectedReel(null)}
         >
-          <div
-            className="relative w-full max-w-[420px] bg-bordeaux/95 text-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 flex flex-col max-h-[92vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-white/10 shrink-0">
-              <div className="min-w-0 pr-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-cotton bg-white/10 px-2 py-0.5 rounded-full inline-block mb-1">
-                  {selectedReel.tag}
-                </span>
-                <h4 className="text-sm font-bold text-white truncate">
-                  {selectedReel.title}
-                </h4>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedReel(null)}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0 cursor-pointer"
-                aria-label="Close video player"
+          {(() => {
+            const isLandscape =
+              selectedReel.tag === "Inside Our Classes" ||
+              (selectedReel.youtubeUrl && !selectedReel.youtubeUrl.includes("/shorts/"));
+
+            return (
+              <div
+                className={`relative w-full ${
+                  isLandscape ? "max-w-3xl" : "max-w-[420px]"
+                } bg-bordeaux/95 text-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 flex flex-col max-h-[92vh]`}
+                onClick={(e) => e.stopPropagation()}
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Video Player Container (9:16 Aspect Ratio) */}
-            <div className="relative aspect-[9/16] w-full max-h-[68vh] bg-black overflow-hidden flex items-center justify-center">
-              {(() => {
-                const embedUrl = getYouTubeEmbedUrl(selectedReel.youtubeUrl || selectedReel.youtubeId);
-
-                if (embedUrl) {
-                  return (
-                    <iframe
-                      src={embedUrl}
-                      title={selectedReel.title}
-                      className="w-full h-full border-0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  );
-                }
-
-                return (
-                  <div className="p-6 text-center flex flex-col items-center justify-center gap-3">
-                    <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center">
-                      <svg className="w-8 h-8 fill-current translate-x-0.5 text-white" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                    <h4 className="text-base font-extrabold text-white">
+                {/* Modal Header */}
+                <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-white/10 shrink-0">
+                  <div className="min-w-0 pr-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-cotton bg-white/10 px-2 py-0.5 rounded-full inline-block mb-1">
+                      {selectedReel.tag}
+                    </span>
+                    <h4 className="text-sm font-bold text-white truncate">
                       {selectedReel.title}
                     </h4>
-                    <p className="text-xs text-cotton/90 leading-relaxed">
-                      {selectedReel.clientOrCoach}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedReel(null)}
+                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                    aria-label="Close video player"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Video Player Container */}
+                <div
+                  className={`relative ${
+                    isLandscape ? "aspect-video" : "aspect-[9/16] max-h-[68vh]"
+                  } w-full bg-black overflow-hidden flex items-center justify-center`}
+                >
+                  {(() => {
+                    const embedUrl = getYouTubeEmbedUrl(selectedReel.youtubeUrl || selectedReel.youtubeId);
+
+                    if (embedUrl) {
+                      return (
+                        <iframe
+                          src={embedUrl}
+                          title={selectedReel.title}
+                          className="w-full h-full border-0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      );
+                    }
+
+                    return (
+                      <div className="p-6 text-center flex flex-col items-center justify-center gap-3">
+                        <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center">
+                          <svg className="w-8 h-8 fill-current translate-x-0.5 text-white" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-base font-extrabold text-white">
+                          {selectedReel.title}
+                        </h4>
+                        <p className="text-xs text-cotton/90 leading-relaxed">
+                          {selectedReel.clientOrCoach}
+                        </p>
+                      </div>
+                    );
+                  })()}
+                </div>
+
+                {/* Modal Footer CTA -> Direct WhatsApp with context */}
+                <div className="p-3.5 sm:p-4 bg-bordeaux border-t border-white/10 shrink-0 flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-cotton truncate">
+                      {isLandscape
+                        ? "Want to join this live face yoga batch?"
+                        : "Ready to start your GlowHer journey?"}
+                    </p>
+                    <p className="text-[11px] text-white/70">
+                      Batches run Monday to Friday from 5:30 AM to 8:30 PM IST
                     </p>
                   </div>
-                );
-              })()}
-            </div>
-
-            {/* Modal Footer CTA -> Direct WhatsApp with context */}
-            <div className="p-3.5 sm:p-4 bg-bordeaux border-t border-white/10 shrink-0 flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <p className="text-xs font-semibold text-cotton truncate">
-                  Ready to start your GlowHer journey?
-                </p>
-                <p className="text-[11px] text-white/70">
-                  Batches run Monday to Friday from 5:30 AM to 8:30 PM IST
-                </p>
+                  <a
+                    href={`https://wa.me/917302970977?text=${encodeURIComponent(
+                      `Hi GlowHer! I watched the video "${selectedReel.title}" and would like to join your live Google Meet classes. Please share joining details.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs tracking-wide transition-all shadow-sm"
+                  >
+                    Join on WhatsApp
+                  </a>
+                </div>
               </div>
-              <a
-                href={`https://wa.me/917302970977?text=${encodeURIComponent(
-                  `Hi GlowHer! I watched the review "${selectedReel.title}" and would like to join your live face yoga batches. Please share details.`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs tracking-wide transition-all shadow-sm"
-              >
-                Join on WhatsApp
-              </a>
-            </div>
-          </div>
+            );
+          })()}
         </div>
       )}
     </section>
   );
 }
+

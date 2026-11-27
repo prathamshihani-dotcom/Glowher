@@ -17,8 +17,8 @@ export default function Footer({ brand }: FooterProps) {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3.5">
               <Image
-                src="/brand/yogher-logo.png"
-                alt="YogHer Logo"
+                src={isYogher ? "/brand/yogher-logo.png" : "/brand/glowher-logo.jpeg"}
+                alt={isYogher ? "YogHer Logo" : "GlowHer Logo"}
                 width={56}
                 height={56}
                 unoptimized
@@ -87,8 +87,13 @@ export default function Footer({ brand }: FooterProps) {
                     </Link>
                   </li>
                   <li>
-                    <Link href="#reviews" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
-                      Video reviews
+                    <Link href="#classes" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
+                      Inside our classes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#results" className="text-softpink hover:text-white transition-colors min-h-[44px] flex items-center">
+                      Client results
                     </Link>
                   </li>
                   <li>

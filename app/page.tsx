@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "GlowHer by YogHer",
     images: [
       {
-        url: "/brand/yogher-logo.png",
+        url: "/brand/glowher-logo.jpeg",
         width: 256,
         height: 256,
         alt: "GlowHer by YogHer",
@@ -48,28 +48,31 @@ export default function GlowherPage() {
         {/* 2. Hero in large cotton card with batch timing form + coach faces */}
         <HeroGlowher />
 
-        {/* 3. Monday to Friday Weekly Practice Rhythm (3 Face Yoga + 2 Abhyanga) */}
+        {/* 3. Inside Our Classes (Live Face Yoga & Abhyanga Google Meet sessions) */}
+        <VideoReelsSection mode="classes" id="classes" />
+
+        {/* 4. Monday to Friday Weekly Practice Rhythm (3 Face Yoga + 2 Abhyanga) */}
         <GlowWeeklyRhythm />
 
-        {/* 6. Your 30-minute session (Face-zone illustration + Bordeaux breakdown) */}
+        {/* 5. Your 30-minute session (Face-zone illustration + Bordeaux breakdown) */}
         <GlowSession />
 
-        {/* 7. Real client transformations & before/after gallery */}
+        {/* 6. Real client transformations & before/after gallery */}
         <GlowTransformations />
 
-        {/* 8. Downloadable Client Guides (PDFs) */}
+        {/* 7. Downloadable Client Guides (PDFs) */}
         <GlowDownloads />
 
-        {/* 9. Real face yoga class photos slot (renders when populated) */}
+        {/* 8. Real face yoga class photos slot (renders when populated) */}
         <GlowClassPhotos />
 
-        {/* 10. Coaches (Manisha & Ithieeka + practice gallery rows) */}
+        {/* 9. Coaches (Manisha & Lipakshi + practice gallery rows) */}
         <GlowCoaches />
 
-        {/* 11. Real YouTube Reviews & Live Class Testimonials */}
-        <VideoReelsSection id="reviews" />
+        {/* 10. Real Face Yoga Client Reviews (renders when populated) */}
+        <VideoReelsSection mode="feedback" id="reviews" />
 
-        {/* 12. Pricing */}
+        {/* 11. Pricing */}
         <GlowPricing />
 
         {/* 12. FAQ ("Good to know.") */}

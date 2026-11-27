@@ -35,13 +35,13 @@ export default function Header({ brand }: HeaderProps) {
             ) : (
               <>
                 <Image
-                  src="/brand/yogher-logo.png"
-                  alt="YogHer Logo"
-                  width={40}
-                  height={40}
+                  src="/brand/glowher-logo.jpeg"
+                  alt="GlowHer Logo"
+                  width={44}
+                  height={44}
                   priority
                   unoptimized
-                  className="w-10 h-10 rounded-full object-cover shrink-0 shadow-sm"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover shrink-0 shadow-sm"
                 />
                 <div className="flex flex-col">
                   <span className="text-2xl sm:text-[26px] font-extrabold tracking-tightest text-bordeaux leading-none">
@@ -81,11 +81,11 @@ export default function Header({ brand }: HeaderProps) {
               <Link href="#rhythm" className="hover:text-muted transition-colors py-2">
                 Weekly Rhythm
               </Link>
+              <Link href="#classes" className="hover:text-muted transition-colors py-2">
+                Inside Classes
+              </Link>
               <Link href="#results" className="hover:text-muted transition-colors py-2">
                 Results
-              </Link>
-              <Link href="#reviews" className="hover:text-muted transition-colors py-2">
-                Reviews
               </Link>
               <Link href="#pricing" className="hover:text-muted transition-colors py-2">
                 Pricing

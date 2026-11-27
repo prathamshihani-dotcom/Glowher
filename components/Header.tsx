@@ -69,7 +69,7 @@ export default function Header({ brand }: HeaderProps) {
   // GlowHer Header: Prominent centered logo on both Mobile and Desktop
   return (
     <header className="sticky top-0 z-40 w-full bg-softpink/95 backdrop-blur-md border-b border-cotton/60 transition-all">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-18 sm:h-22 flex items-center justify-between gap-4">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-22 sm:h-24 md:h-26 py-2 flex items-center justify-between gap-4">
         {/* Left Desktop Nav (Symmetric) */}
         <nav aria-label="Main navigation left" className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-bordeaux flex-1 justify-start">
           <Link href="#rhythm" className="hover:text-muted transition-colors py-2">
@@ -81,20 +81,20 @@ export default function Header({ brand }: HeaderProps) {
         </nav>
 
         {/* Center: GlowHer Logo - Perfectly Centered in Middle on Mobile & Desktop */}
-        <div className="flex-1 md:flex-initial flex items-center justify-center shrink-0 py-1">
+        <div className="flex-1 md:flex-initial flex items-center justify-center shrink-0">
           <Link
             href="/"
             aria-label="GlowHer Face Yoga by YogHer"
-            className="flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-bordeaux rounded-xl shrink-0"
+            className="flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-bordeaux rounded-xl shrink-0 transition-transform hover:scale-105"
           >
             <Image
               src="/brand/glowher-logo.png"
               alt="GlowHer Face Yoga Classes by YogHer"
-              width={160}
-              height={85}
+              width={220}
+              height={180}
               priority
               unoptimized
-              className="h-14 sm:h-16 md:h-18 w-auto object-contain hover:scale-105 transition-transform"
+              className="h-20 sm:h-22 md:h-24 w-auto object-contain drop-shadow-sm"
             />
           </Link>
         </div>
@@ -109,7 +109,7 @@ export default function Header({ brand }: HeaderProps) {
           </Link>
           <Link
             href="#pricing"
-            className="inline-flex items-center justify-center min-h-[42px] px-5 py-2.5 rounded-full bg-bordeaux text-white font-bold text-xs uppercase tracking-wider hover:opacity-95 transition-opacity focus:outline-none focus:ring-2 focus:ring-bordeaux focus:ring-offset-2 shrink-0 shadow-xs"
+            className="inline-flex items-center justify-center min-h-[44px] px-6 py-2.5 rounded-full bg-bordeaux text-white font-bold text-xs uppercase tracking-wider hover:opacity-95 transition-opacity focus:outline-none focus:ring-2 focus:ring-bordeaux focus:ring-offset-2 shrink-0 shadow-sm"
           >
             Start at ₹999
           </Link>

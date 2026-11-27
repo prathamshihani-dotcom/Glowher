@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -118,9 +119,20 @@ export default function MobileMenu({ isOpen, onClose, brand, triggerRef }: Mobil
       >
         <div className="flex items-center justify-between pb-4 border-b border-cotton">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-extrabold tracking-tightest text-bordeaux">
-              {brand === "yogher" ? "YogHer" : "GlowHer"}
-            </span>
+            {brand === "yogher" ? (
+              <span className="text-2xl font-extrabold tracking-tightest text-bordeaux">
+                YogHer
+              </span>
+            ) : (
+              <Image
+                src="/brand/glowher-logo.jpeg"
+                alt="GlowHer"
+                width={40}
+                height={40}
+                unoptimized
+                className="w-10 h-10 rounded-full object-cover shadow-sm"
+              />
+            )}
           </div>
 
           {/* Close button */}

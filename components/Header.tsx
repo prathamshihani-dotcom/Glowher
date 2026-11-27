@@ -33,25 +33,15 @@ export default function Header({ brand }: HeaderProps) {
                 </span>
               </>
             ) : (
-              <>
-                <Image
-                  src="/brand/glowher-logo.jpeg"
-                  alt="GlowHer Logo"
-                  width={44}
-                  height={44}
-                  priority
-                  unoptimized
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover shrink-0 shadow-sm"
-                />
-                <div className="flex flex-col">
-                  <span className="text-2xl sm:text-[26px] font-extrabold tracking-tightest text-bordeaux leading-none">
-                    GlowHer
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted mt-0.5">
-                    by YogHer
-                  </span>
-                </div>
-              </>
+              <Image
+                src="/brand/glowher-logo.jpeg"
+                alt="GlowHer"
+                width={52}
+                height={52}
+                priority
+                unoptimized
+                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full object-cover shrink-0 shadow-sm"
+              />
             )}
           </Link>
         </div>

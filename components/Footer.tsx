@@ -25,14 +25,22 @@ export default function Footer({ brand }: FooterProps) {
                 className="w-14 h-14 rounded-full object-cover shrink-0 shadow-md"
                 loading="lazy"
               />
-              <div>
-                <span className="text-3xl font-extrabold tracking-tightest text-white leading-none block">
-                  {isYogher ? "YogHer" : "GlowHer"}
-                </span>
-                <span className="block text-xs uppercase tracking-widest text-cotton font-semibold mt-1">
-                  {isYogher ? "Live online yoga for Indian women" : "Live face yoga by YogHer"}
-                </span>
-              </div>
+              {isYogher ? (
+                <div>
+                  <span className="text-3xl font-extrabold tracking-tightest text-white leading-none block">
+                    YogHer
+                  </span>
+                  <span className="block text-xs uppercase tracking-widest text-cotton font-semibold mt-1">
+                    Live online yoga for Indian women
+                  </span>
+                </div>
+              ) : (
+                <div>
+                  <span className="block text-xs uppercase tracking-widest text-cotton font-semibold">
+                    Live face yoga by YogHer
+                  </span>
+                </div>
+              )}
             </div>
 
             <p className="text-cotton text-sm max-w-sm leading-relaxed">

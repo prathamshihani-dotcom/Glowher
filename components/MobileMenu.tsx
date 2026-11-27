@@ -125,12 +125,12 @@ export default function MobileMenu({ isOpen, onClose, brand, triggerRef }: Mobil
               </span>
             ) : (
               <Image
-                src="/brand/glowher-logo.jpeg"
-                alt="GlowHer"
-                width={40}
-                height={40}
+                src="/brand/glowher-logo.png"
+                alt="GlowHer Face Yoga"
+                width={120}
+                height={60}
                 unoptimized
-                className="w-10 h-10 rounded-full object-cover shadow-sm"
+                className="h-12 w-auto object-contain"
               />
             )}
           </div>

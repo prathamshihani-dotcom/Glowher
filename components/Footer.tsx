@@ -17,12 +17,16 @@ export default function Footer({ brand }: FooterProps) {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3.5">
               <Image
-                src={isYogher ? "/brand/yogher-logo.png" : "/brand/glowher-logo.jpeg"}
-                alt={isYogher ? "YogHer Logo" : "GlowHer Logo"}
-                width={56}
-                height={56}
+                src={isYogher ? "/brand/yogher-logo.png" : "/brand/glowher-logo.png"}
+                alt={isYogher ? "YogHer Logo" : "GlowHer Face Yoga Logo"}
+                width={isYogher ? 56 : 140}
+                height={isYogher ? 56 : 70}
                 unoptimized
-                className="w-14 h-14 rounded-full object-cover shrink-0 shadow-md"
+                className={
+                  isYogher
+                    ? "w-14 h-14 rounded-full object-cover shrink-0 shadow-md"
+                    : "h-16 w-auto p-1.5 bg-white rounded-2xl object-contain shrink-0 shadow-md"
+                }
                 loading="lazy"
               />
               {isYogher ? (

@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   creator: "YogHer",
   publisher: "YogHer",
   icons: {
-    icon: "/brand/glowher-logo.jpeg",
-    shortcut: "/brand/glowher-logo.jpeg",
-    apple: "/brand/glowher-logo.jpeg",
+    icon: "/brand/glowher-logo.png",
+    shortcut: "/brand/glowher-logo.png",
+    apple: "/brand/glowher-logo.png",
   },
   robots: {
     index: true,
@@ -85,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="icon" href="/brand/glowher-logo.jpeg" sizes="any" />
+        <link rel="icon" href="/brand/glowher-logo.png" sizes="any" />
         {/* Google Tag Manager */}
         <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KLPCCBJZ" />
         <script

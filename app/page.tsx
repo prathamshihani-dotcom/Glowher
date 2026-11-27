@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "GlowHer by YogHer",
     images: [
       {
-        url: "/brand/glowher-logo.jpeg",
+        url: "/brand/glowher-logo.png",
         width: 256,
         height: 256,
         alt: "GlowHer by YogHer",

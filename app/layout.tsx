@@ -87,7 +87,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/brand/glowher-logo.jpeg" sizes="any" />
         {/* Google Tag Manager */}
-        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M6L27NP2" />
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KLPCCBJZ" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -102,7 +102,7 @@ export default function RootLayout({
         {/* Google Tag Manager (noscript fallback) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-M6L27NP2"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KLPCCBJZ"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}

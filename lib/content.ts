@@ -933,7 +933,8 @@ export const glowherContent = {
     },
   ] as DownloadItem[],
   faceYogaPhotos: [] as FaceYogaPhoto[],
-  videoReels: yogherContent.videoReels,
+  // Dedicated Face Yoga client video reviews only
+  videoReels: [] as VideoReel[],
   testimonials: [] as Testimonial[],
   sharedFeatures: [
     "30-minute live sessions",

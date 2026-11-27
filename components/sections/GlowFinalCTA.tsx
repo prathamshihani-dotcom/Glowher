@@ -7,63 +7,62 @@ export default function GlowFinalCTA() {
 
   return (
     <section
-      style={{ position: "relative", overflow: "hidden" }}
-      className="relative w-full py-16 sm:py-24 overflow-hidden bg-bordeaux text-white"
+      id="cta"
+      className="relative w-full py-16 sm:py-24 bg-gradient-to-b from-[#4A0012] via-bordeaux to-[#3B000E] text-white overflow-hidden"
     >
-      {/* Background Photo with Guaranteed High-Contrast Dark Bordeaux Overlay */}
-      <div
-        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden" }}
-        className="absolute inset-0 z-0 overflow-hidden"
-      >
-        <SafeImage
-          src={IMAGES.glowherFinalCTA}
-          alt="Live Google Meet face yoga session"
-          fill
-          loading="lazy"
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        {/* Dual dark overlay: gradient + blur for 100% text legibility */}
-        <div
-          style={{
-            background: "linear-gradient(180deg, rgba(30, 0, 7, 0.90) 0%, rgba(70, 0, 17, 0.93) 50%, rgba(90, 0, 22, 0.95) 100%)",
-          }}
-          className="absolute inset-0 backdrop-blur-[2px]"
-        />
-      </div>
-
-      <div className="relative z-10 max-w-[900px] mx-auto px-4 sm:px-6 text-center">
-        {/* Pill Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-cotton text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Start Your Daily Face Yoga Practice</span>
+      <div className="relative z-10 max-w-[850px] mx-auto px-4 sm:px-6">
+        {/* 1. Dedicated Image Container (Alag se container) */}
+        <div className="relative w-full max-w-[680px] mx-auto aspect-[16/10] sm:aspect-[16/9] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border-2 border-white/15 bg-black/30 mb-8 sm:mb-10 group">
+          <SafeImage
+            src={IMAGES.glowherFinalCTA}
+            alt="Live Google Meet face yoga session"
+            fill
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 680px"
+            className="object-cover object-center group-hover:scale-102 transition-transform duration-500"
+          />
+          {/* Live class badge */}
+          <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider border border-white/20 shadow-md">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <span>Live Class on Google Meet</span>
+          </div>
         </div>
 
-        {/* High-visibility Headline */}
-        <h2 className="text-[28px] sm:text-[38px] md:text-[48px] font-extrabold tracking-tightest leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] mb-4">
-          Give your face 30 minutes. Feel the natural lift every day.
-        </h2>
+        {/* 2. Text Content (Neeche dedicated area for 100% clarity) */}
+        <div className="text-center max-w-[720px] mx-auto">
+          {/* Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-cotton text-xs font-bold uppercase tracking-wider mb-4 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Start Your Daily Face Yoga Practice</span>
+          </div>
 
-        {/* Supporting subline */}
-        <p className="text-cotton text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
-          Join certified women coaches live on Google Meet Monday to Friday. Zero tools or expensive serums needed.
-        </p>
+          {/* High-visibility Headline */}
+          <h2 className="text-[26px] sm:text-[36px] md:text-[44px] font-extrabold tracking-tightest leading-tight text-white mb-3 sm:mb-4">
+            Give your face 30 minutes. Feel the natural lift every day.
+          </h2>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="#trial"
-            className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 rounded-full bg-cotton text-bordeaux font-extrabold text-sm tracking-wide shadow-xl hover:bg-white transition-all flex items-center justify-center hover:scale-105"
-          >
-            Join from ₹999
-          </Link>
-          <a
-            href={siteConfig.glowherWhatsAppUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 rounded-full border-2 border-cotton text-cotton font-extrabold text-sm tracking-wide hover:bg-white/15 transition-all flex items-center justify-center backdrop-blur-sm"
-          >
-            {hero.ctaSecondary}
-          </a>
+          {/* Supporting Subline */}
+          <p className="text-cotton text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed font-medium">
+            Join certified women coaches live on Google Meet Monday to Friday. Zero tools or expensive serums needed.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="#trial"
+              className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 rounded-full bg-cotton text-bordeaux font-extrabold text-sm tracking-wide shadow-xl hover:bg-white transition-all flex items-center justify-center hover:scale-105"
+            >
+              Join from ₹999
+            </Link>
+            <a
+              href={siteConfig.glowherWhatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 rounded-full border-2 border-cotton text-cotton font-extrabold text-sm tracking-wide hover:bg-white/15 transition-all flex items-center justify-center backdrop-blur-sm"
+            >
+              {hero.ctaSecondary}
+            </a>
+          </div>
         </div>
       </div>
     </section>

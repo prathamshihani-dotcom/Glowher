@@ -15,16 +15,16 @@ import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 export const metadata: Metadata = {
-  title: "GlowHer by YogHer — Live online face yoga classes",
+  title: "GlowHer by YogHer — Your Face Deserves a Workout Too!",
   description:
-    "Live face yoga with certified women coaches. Lift and tone your facial muscles, release everyday tension, and build a glow routine that needs no products.",
+    "Join live online face yoga classes guided by trained women instructors. Work on facial movements, massage techniques and daily self-care routines — all from the comfort of your home.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "GlowHer by YogHer — Live online face yoga classes",
+    title: "GlowHer by YogHer — Your Face Deserves a Workout Too!",
     description:
-      "Lift and tone your facial muscles in 30 minutes a day with live women coaches. Zero tools or expensive serums needed.",
+      "Join live online face yoga classes guided by trained women instructors. Work on facial movements, massage techniques and daily self-care routines — all from the comfort of your home.",
     url: "https://yogher.in/glowher",
     siteName: "GlowHer by YogHer",
     images: [

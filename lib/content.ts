@@ -714,8 +714,8 @@ export const yogherContent = {
 export const glowherContent = {
   hero: {
     chip: "Live face yoga • Flexible timings • 30 minutes • Monday to Friday",
-    h1: "Your natural glow, 30 minutes a day.",
-    sub: "Live face yoga with certified women coaches. Lift and tone your facial muscles, release everyday tension, and build a glow routine that needs no products.",
+    h1: "Your Face Deserves a Workout Too!",
+    sub: "Join live online face yoga classes guided by trained women instructors. Work on facial movements, massage techniques and daily self-care routines — all from the comfort of your home.",
     ctaPrimary: "Join from ₹999 a month",
     ctaPrimaryHref: "#pricing",
     ctaSecondary: "Chat on WhatsApp",
